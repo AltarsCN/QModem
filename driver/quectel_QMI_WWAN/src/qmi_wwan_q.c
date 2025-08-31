@@ -1460,7 +1460,7 @@ typedef struct {
 } BRMAC_SETTING;
 #endif
 
-static int qma_setting_store(struct device *dev, QMAP_SETTING *qmap_settings, size_t size);
+int qma_setting_store(struct device *dev, QMAP_SETTING *qmap_settings, size_t size);
 
 int qma_setting_store(struct device *dev, QMAP_SETTING *qmap_settings, size_t size) {
 	struct net_device *netdev = to_net_dev(dev);

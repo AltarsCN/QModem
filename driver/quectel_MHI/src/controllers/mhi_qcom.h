@@ -37,6 +37,14 @@ void mhi_deinit_pci_dev(struct mhi_controller *mhi_cntrl);
 int mhi_pci_probe(struct pci_dev *pci_dev,
 		  const struct pci_device_id *device_id);
 
+/* Function prototypes for global functions */
+int mhi_system_suspend(struct device *dev);
+int mhi_debugfs_trigger_m0(void *data, u64 val);
+int mhi_debugfs_trigger_m3(void *data, u64 val);
+int mhi_init_debugfs_debug_show(struct seq_file *m, void *d);
+void mhi_controller_qcom_exit(void);
+int mhi_controller_qcom_init(void);
+
 #if (LINUX_VERSION_CODE < KERNEL_VERSION( 3,10,65 ))
 static inline int dma_set_mask_and_coherent(struct device *dev, u64 mask)
 {

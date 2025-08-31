@@ -1161,6 +1161,33 @@ void mhi_deinit_dev_ctxt(struct mhi_controller *mhi_cntrl);
 int mhi_init_irq_setup(struct mhi_controller *mhi_cntrl);
 void mhi_deinit_free_irq(struct mhi_controller *mhi_cntrl);
 int mhi_dtr_init(void);
+void mhi_dtr_exit(void);
+
+/* Boot/firmware related functions */
+int BhiWrite(struct mhi_controller *mhi_cntrl, void __user *ubuf, size_t size);
+long bhi_get_dev_info(struct mhi_controller *mhi_cntrl, void __user *ubuf);
+long bhi_write_image(struct mhi_controller *mhi_cntrl, void __user *ubuf);
+void mhi_fw_load_worker(struct work_struct *work);
+
+/* DTR/ioctl related functions */
+long mhi_ioctl(struct mhi_device *mhi_dev, unsigned int cmd, unsigned long arg);
+
+/* UCI device functions */
+int mhi_device_uci_init(void);
+void mhi_device_uci_exit(void);
+
+/* Additional MHI functions */
+int mhi_download_rddm_img(struct mhi_controller *mhi_cntrl, bool in_panic);
+int mhi_device_netdev_init(struct dentry *parent);
+int mhi_netdev_use_xfer_type_dma(unsigned chan);
+int mhi_netdev_mbin_enabled(void);
+
+/* Architecture specific functions */
+int mhi_arch_iommu_init(struct mhi_controller *mhi_cntrl);
+int mhi_arch_pcie_init(struct mhi_controller *mhi_cntrl);
+int mhi_arch_platform_init(struct mhi_dev *mhi_dev);
+int mhi_arch_link_off(struct mhi_controller *mhi_cntrl, bool graceful);
+int mhi_arch_link_on(struct mhi_controller *mhi_cntrl);
 
 /* isr handlers */
 irqreturn_t mhi_one_msi_handlr(int irq_number, void *dev);
